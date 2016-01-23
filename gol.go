@@ -198,7 +198,7 @@ func main() {
 
 	app.Action = func(c *cli.Context) {
 		if len(c.Args()) <= 0 {
-			log.Fatal("Fail")
+			log.Fatalf("Usage: %v <length> <width> <num_rounds>", app.Name)
 		}
 
 		length, err := strconv.Atoi(c.Args()[0])
