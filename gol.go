@@ -207,16 +207,16 @@ func main() {
 
 		length, err := strconv.Atoi(c.Args()[0])
 		if err != nil {
-			exitError(err)
+			exitError(err.Error())
 		}
 		width, err := strconv.Atoi(c.Args()[1])
 		if err != nil {
-			exitError(err)
+			exitError(err.Error())
 		}
 
 		rounds, err := strconv.Atoi(c.Args()[2])
 		if err != nil {
-			exitError(err)
+			exitError(err.Error())
 		}
 
 		game := NewGame(length, width)
