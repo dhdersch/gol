@@ -18,7 +18,7 @@ Command: `shell> gol 8 10 5`
     X X         X       
       X                 
       X                 
-    + - - - - - - - - - 
+    - - - - - - - - - - 
           X       X     
       X   X     X       
     X         X   X     
@@ -27,7 +27,7 @@ Command: `shell> gol 8 10 5`
     X X X               
       X X               
                         
-    + - - - - - - - - - 
+    - - - - - - - - - - 
         X               
         X   X   X X     
     X X X   X   X       
@@ -36,7 +36,7 @@ Command: `shell> gol 8 10 5`
     X     X             
     X   X               
                         
-    + - - - - - - - - - 
+    - - - - - - - - - - 
           X             
         X       X X     
     X   X   X   X X     
@@ -45,7 +45,7 @@ Command: `shell> gol 8 10 5`
     X   X X             
       X                 
                         
-    + - - - - - - - - - 
+    - - - - - - - - - - 
                         
       X X     X X X     
       X     X     X     
@@ -54,7 +54,7 @@ Command: `shell> gol 8 10 5`
     X       X           
       X X               
                         
-    + - - - - - - - - - 
+    - - - - - - - - - - 
                 X       
       X X     X X X     
       X   X       X     
@@ -63,4 +63,4 @@ Command: `shell> gol 8 10 5`
         X X             
       X                 
                         
-    + - - - - - - - - - 
+    - - - - - - - - - - 
