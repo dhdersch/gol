@@ -167,7 +167,7 @@ func (b Board) PrintBoard() {
 		fmt.Println("")
 	}
 
-	for _, _ = range b[0] {
+	for _ = range b[0] {
 		fmt.Print("- ")
 	}
 	fmt.Println("")
@@ -176,7 +176,7 @@ func (b Board) PrintBoard() {
 // SeedBoard - randomly seeds the board with dead and living cells
 func (b Board) SeedBoard() {
 	for i, row := range b {
-		for y, _ := range row {
+		for y := range row {
 			b[i][y] = RandomCell()
 		}
 	}
