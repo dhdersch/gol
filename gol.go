@@ -9,13 +9,12 @@ import (
 	"time"
 )
 
+// Cell - Cells are either living or dead
 type Cell bool
 
+// Alive - Convenience function for determining whether a Cell is currently alive or dead.
 func (c Cell) Alive() bool {
-	if c {
-		return true
-	}
-	return false
+	return bool(c)
 }
 
 func (c Cell) String() string {
