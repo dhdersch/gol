@@ -17,6 +17,7 @@ func (c Cell) Alive() bool {
 	return bool(c)
 }
 
+// String - Converts a Cell to a string for output
 func (c Cell) String() string {
 	switch c {
 	case true:
@@ -26,8 +27,10 @@ func (c Cell) String() string {
 	}
 }
 
+// Board - the Game of Life game board!
 type Board [][]Cell
 
+// NewBoard - initializes a new Board pointer with all Cells dead.
 func NewBoard(length int, width int) Board {
 	board := [][]Cell{}
 	for i := 0; i < length; i++ {
@@ -37,6 +40,7 @@ func NewBoard(length int, width int) Board {
 	return board
 }
 
+// CheckCell - Checks whether a a cell is alive or dead (performs bounds checking)
 func (b Board) CheckCell(row int, col int) bool {
 
 	if row < 0 || col < 0 || row > len(b)-1 || col > len(b[0])-1 {
@@ -46,10 +50,12 @@ func (b Board) CheckCell(row int, col int) bool {
 	return b[row][col].Alive()
 }
 
+// Equals - Does this Board have a sequence of cells that exactly match this other sequence?
 func (b Board) Equals(b2 Board) bool {
 	return BoardEqual(b, b2)
 }
 
+// BoardEqual - Determines whether to boards are equal
 func BoardEqual(b Board, b2 Board) bool {
 
 	if len(b) != len(b2) {
@@ -69,12 +75,17 @@ func BoardEqual(b Board, b2 Board) bool {
 	return true
 }
 
+// Game - A Game of Life Game!
 type Game struct {
+	// Length - length of the board
 	Length int
-	Width  int
+	// Width - width of the board
+	Width int
+	// Board - the board
 	Board
 }
 
+// NewGame - initialize a new Game pointer
 func NewGame(length int, width int) *Game {
 	game := &Game{
 		Length: length,
@@ -84,6 +95,7 @@ func NewGame(length int, width int) *Game {
 	return game
 }
 
+// Tick - Advance the game by one turn
 func (g *Game) Tick() {
 	newBoard := NewBoard(g.Length, g.Width)
 
@@ -146,6 +158,7 @@ func (g *Game) Tick() {
 	g.Board = newBoard
 }
 
+// PrintBoard - prints the cells
 func (b Board) PrintBoard() {
 	for _, row := range b {
 		for _, col := range row {
@@ -160,6 +173,7 @@ func (b Board) PrintBoard() {
 	fmt.Println("")
 }
 
+// SeedBoard - randomly seeds the board with dead and living cells
 func (b Board) SeedBoard() {
 	for i, row := range b {
 		for y, _ := range row {
@@ -168,6 +182,7 @@ func (b Board) SeedBoard() {
 	}
 }
 
+// RandomCell - Randomly sets a cell to living or dead
 func RandomCell() Cell {
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	randomInt := r.Int()
@@ -178,6 +193,7 @@ func RandomCell() Cell {
 	return false
 }
 
+// CheckIfSequence - Checks if there is a sequence
 func CheckIfSequence(boards []Board, b Board) bool {
 	for i := len(boards) - 1; i >= 0; i-- {
 		if b.Equals(boards[i]) {
