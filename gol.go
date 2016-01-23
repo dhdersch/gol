@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/codegangsta/cli"
-	"log"
 	"math/rand"
 	"os"
 	"strconv"
@@ -190,6 +189,11 @@ func CheckIfSequence(boards []Board, b Board) bool {
 	return false
 }
 
+func exitError(message string) {
+	fmt.Println(message)
+	os.Exit(1)
+}
+
 func main() {
 
 	app := cli.NewApp()
@@ -198,21 +202,21 @@ func main() {
 
 	app.Action = func(c *cli.Context) {
 		if len(c.Args()) <= 0 {
-			log.Fatalf("Usage: %v <length> <width> <num_rounds>", app.Name)
+			exitError(fmt.Sprintf("Usage: %v <length> <width> <num_rounds>", app.Name))
 		}
 
 		length, err := strconv.Atoi(c.Args()[0])
 		if err != nil {
-			log.Fatal(err)
+			exitError(err)
 		}
 		width, err := strconv.Atoi(c.Args()[1])
 		if err != nil {
-			log.Fatal(err)
+			exitError(err)
 		}
 
 		rounds, err := strconv.Atoi(c.Args()[2])
 		if err != nil {
-			log.Fatal(err)
+			exitError(err)
 		}
 
 		game := NewGame(length, width)
