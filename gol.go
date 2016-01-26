@@ -19,20 +19,18 @@ func (c Cell) Alive() bool {
 
 // String - Converts a Cell to a string for output
 func (c Cell) String() string {
-	switch c {
-	case true:
+	if c {
 		return "X"
-	default:
-		return " "
 	}
+	return " "
 }
 
 // Board - the Game of Life game board!
 type Board [][]Cell
 
 // NewBoard - initializes a new Board pointer with all Cells dead.
-func NewBoard(length int, width int) Board {
-	board := [][]Cell{}
+func NewBoard(length, width int) Board {
+	board := make([][]Cell, 0, length)
 	for i := 0; i < length; i++ {
 		row := make([]Cell, width, width)
 		board = append(board, row)
@@ -86,7 +84,7 @@ type Game struct {
 }
 
 // NewGame - initialize a new Game pointer
-func NewGame(length int, width int) *Game {
+func NewGame(length, width int) *Game {
 	game := &Game{
 		Length: length,
 		Width:  width,
@@ -204,20 +202,19 @@ func CheckIfSequence(boards []Board, b Board) bool {
 	return false
 }
 
-func exitError(message string) {
-	fmt.Println(message)
+func exitError(format string, args ...interface{}) {
+	fmt.Fprintf(os.Stderr, format, args...)
 	os.Exit(1)
 }
 
 func main() {
-
 	app := cli.NewApp()
 	app.Name = "Game of Life"
 	app.Usage = "play the game of life"
 
 	app.Action = func(c *cli.Context) {
 		if len(c.Args()) <= 0 {
-			exitError(fmt.Sprintf("Usage: %v <length> <width> <num_rounds>", app.Name))
+			exitError("Usage: %v <length> <width> <num_rounds>", app.Name)
 		}
 
 		length, err := strconv.Atoi(c.Args()[0])
@@ -239,7 +236,7 @@ func main() {
 		game.SeedBoard()
 		game.PrintBoard()
 
-		previousBoards := make([]Board, 0, 0)
+		var previousBoards []Board
 		b := game.Board
 
 		previousBoards = append(previousBoards, b)
